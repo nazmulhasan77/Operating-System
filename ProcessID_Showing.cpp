@@ -1,16 +1,26 @@
 #include <iostream>
 #include <unistd.h>  // For getpid() and getppid()
-
+using namespace std;
 int main() {
     // Get process ID
-    pid_t pid = getpid();
+    int child_status;
+    int child_pid;
+    int parentPID;
     
-    // Get parent process ID
-    pid_t ppid = getppid();
+    parentPID = getpid();
 
-    // Print process IDs
-    std::cout << "Process ID (PID): " << pid << std::endl;
-    std::cout << "Parent Process ID (PPID): " << ppid << std::endl;
+    child_status = fork();
+    if (child_status==0){
+        child_pid=getpid();
+
+        cout << "Parent PID: " << parentPID << ", Child PID: " << child_pid << endl;
+
+    }
+    else{
+        cout << "Parent PID : " << parentPID << endl; // first print this because child not created at first 
+
+    }
+    
 
     return 0;
 }
