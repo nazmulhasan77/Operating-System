@@ -7,23 +7,23 @@ int main() {
     int child_status;
     int child_pid;
     int parentPID;
-    int process_no;
-
-    // Get process ID
+    int processor_no;
+    //Get parent PID
     parentPID = getpid();
-
+    
     child_status = fork();
     if (child_status==0){
+        
         child_pid=getpid();
-        process_no=sched_getcpu(); // get processor no
-        cout << "Parent PID: " << parentPID << ", Child PID: " << child_pid << ", Processor: " << process_no << endl;
-
-    }
-    else{
-        cout << "Parent PID : " << parentPID << endl; // first print this because child not created at first 
-
+        processor_no=sched_getcpu(); // get processor no
+        cout << "Parent PID: " << parentPID << ", Child PID: " << child_pid << ", Processor: " << processor_no << endl;
     }
     
+    else{
+        processor_no=sched_getcpu(); // get processor no
+        cout << "Parent PID : " << parentPID << ", Processor:" << processor_no << endl; // first print this because child not created at first 
 
+    }
+      
     return 0;
 }
