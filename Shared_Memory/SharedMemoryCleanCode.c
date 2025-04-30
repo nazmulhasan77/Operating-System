@@ -23,7 +23,7 @@ int main(){
     shmid = shmget(key,sizeof(int),IPC_CREAT|0666);
     
 
-    if(shmid == 0){
+    if(shmid == -1){
         perror("shmget: ");
         exit(EXIT_FAILURE);
     }
